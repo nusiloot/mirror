@@ -9,6 +9,7 @@ The [Burp Suite](https://portswigger.net/burp) extension works in both the Commu
 ## Features:
 
 - Passively scan for reflected parameters
+- Repeat request from tab
 - Local API server to inject JavaScript and inspect DOM for reflects parameters
 
 ## ToDo
@@ -45,13 +46,13 @@ Extension JAR will be located at: `build/libs/mirror-x.x.jar`
 
 1. Set scope
 2. Manually navigate or spider the application
-3. Requests with reflected parameters be added to the `Mirror` tab.
+3. Requests with reflected parameters will be added to the `Mirror` tab.
 
 #### [Optional] Mirror API/DOM Inspection
 
 1. Set scope
 2. Start Mirror server
 2. Manually navigate application with browser
-3. Requests with reflected parameters be added to the `Mirror` tab.
+3. Requests with reflected parameters will be added to the `Mirror` tab.
 
-Note: The Mirror API when on (and `Inject Mirror server JavaScript` checkbox is checked) will inject JavaScript into each GET request that is in scope. 
+Note: The Mirror API when on (and `Inject Mirror server JavaScript` is checked) will inject JavaScript into each GET request that is in scope. 
