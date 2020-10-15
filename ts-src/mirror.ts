@@ -42,12 +42,12 @@ function getParams(params: string): string[] {
   return keyValues;
 }
 
-async function addToMirror(mirroData: MirrorData) {
+async function addToMirror(mirrorData: MirrorData) {
   fetch(`http://localhost:3033/mirror/add`, {
     method: "POST",
     mode: "cors",
     credentials: "omit",
-    body: JSON.stringify(mirroData),
+    body: JSON.stringify(mirrorData),
     headers: {
       "Content-Type": "application/json",
     },
@@ -60,4 +60,4 @@ interface MirrorData {
   title: string;
 }
 
-reflect();
+document.addEventListener("DOMContentLoaded", () => reflect());

@@ -76,14 +76,14 @@ function getParams(params) {
         .filter(function (param) { return param.length > 3; });
     return keyValues;
 }
-function addToMirror(mirroData) {
+function addToMirror(mirrorData) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             fetch("http://localhost:3033/mirror/add", {
                 method: "POST",
                 mode: "cors",
                 credentials: "omit",
-                body: JSON.stringify(mirroData),
+                body: JSON.stringify(mirrorData),
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -92,4 +92,4 @@ function addToMirror(mirroData) {
         });
     });
 }
-reflect();
+document.addEventListener("DOMContentLoaded", function () { return reflect(); });
