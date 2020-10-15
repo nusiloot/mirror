@@ -2,7 +2,6 @@
 
 package burp
 
-import java.awt.Toolkit
 import javax.swing.SwingUtilities
 
 class BurpExtender : IBurpExtender, IExtensionStateListener {
@@ -35,7 +34,6 @@ class BurpExtender : IBurpExtender, IExtensionStateListener {
     }
 
     override fun extensionUnloaded() {
-        Toolkit.getDefaultToolkit().beep()
         server.stop()
     }
 }
