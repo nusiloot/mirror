@@ -62,8 +62,11 @@ class MirrorReflect(
     }
 
     fun importProxyHistory() {
-        callbacks.proxyHistory.forEach {
-            mirrorScan(it)
-        }
+        callbacks.proxyHistory.filter { checkScope(it) }.forEach { mirrorScan(it) }
+    }
+
+    private fun checkScope(requestResponse: IHttpRequestResponse): Boolean {
+        val url = helpers.analyzeRequest(requestResponse).url
+        return callbacks.isInScope(url)
     }
 }
