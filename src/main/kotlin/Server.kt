@@ -78,6 +78,7 @@ class Server {
     }
 
     fun start() {
+        callbacks?.printOutput("\nStarting Mirror server on http://localhost:3033")
         GlobalScope.launch(Dispatchers.IO) {
             if (server == null) {
                 initServer()
@@ -87,6 +88,7 @@ class Server {
     }
 
     fun stop() {
+        callbacks?.printOutput("\nStopping Mirror server on http://localhost:3033")
         GlobalScope.launch(Dispatchers.IO) {
             server?.stop(1, 1, TimeUnit.SECONDS)
             server = null

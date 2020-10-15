@@ -10,6 +10,9 @@ class BurpExtender : IBurpExtender, IExtensionStateListener {
 
     override fun registerExtenderCallbacks(callbacks: IBurpExtenderCallbacks) {
         val tab = MirrorTab(callbacks, server)
+        server.callbacks = callbacks
+        server.tab = tab
+
         callbacks.apply {
             registerHttpListener(MirrorListener(callbacks, tab))
             printOutput("Mirror v0.0.1")
@@ -24,14 +27,11 @@ class BurpExtender : IBurpExtender, IExtensionStateListener {
             if ((callbacks.loadExtensionSetting(MirrorOptions.IMPORT_PROXY_ON_START) ?: "true").toBoolean()) {
                 MirrorReflect(callbacks, tab.mirrorPanel).importProxyHistory()
             }
-
-            if ((callbacks.loadExtensionSetting(MirrorOptions.RUN_SERVER_ON_START) ?: "true").toBoolean()) {
-                server.start()
-            }
         }
 
-        server.callbacks = callbacks
-        server.tab = tab
+        if ((callbacks.loadExtensionSetting(MirrorOptions.RUN_SERVER_ON_START) ?: "false").toBoolean()) {
+            server.start()
+        }
     }
 
     override fun extensionUnloaded() {
