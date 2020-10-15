@@ -39,7 +39,7 @@ class MirrorPanel(private val callbacks: IBurpExtenderCallbacks, server: Server)
     init {
         MirrorActions(this, callbacks)
         table.apply {
-            autoResizeMode = JTable.AUTO_RESIZE_ALL_COLUMNS
+            autoResizeMode = JTable.AUTO_RESIZE_OFF
             columnModel.getColumn(0).preferredWidth = 50 // ID
             columnModel.getColumn(1).preferredWidth = 160 // date
             columnModel.getColumn(2).preferredWidth = 125 // host
