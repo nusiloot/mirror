@@ -5,24 +5,14 @@ class MirrorReflect(
     private val mirrorPanel: MirrorPanel,
 ) {
     private val helpers: IExtensionHelpers = callbacks.helpers
-    private val mirrorOptions = mirrorPanel.mirrorFilters.mirrorOptions
 
     fun mirrorScan(
         requestResponse: IHttpRequestResponse,
         toolFlag: Int = IBurpExtenderCallbacks.TOOL_PROXY
     ) {
         val request = callbacks.helpers.analyzeRequest(requestResponse) ?: return
-        val highlightProxyHistory = mirrorOptions.highlightProxyHistory.isSelected
-
         mirrorScannerItems(request, requestResponse, toolFlag)?.let {
-
-            if (mirrorPanel.addMirrorItem(it)) {
-                if (toolFlag == IBurpExtenderCallbacks.TOOL_PROXY && highlightProxyHistory) {
-                    requestResponse.highlight = "purple"
-                    requestResponse.comment =
-                        "Mirror"
-                }
-            }
+            mirrorPanel.addMirrorItem(it)
         }
     }
 

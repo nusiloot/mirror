@@ -13,7 +13,6 @@ class MirrorOptions(callbacks: IBurpExtenderCallbacks) {
     val removeCsp = JCheckBox("Remove Content Security Policy (CSP) headers")
     val noDuplicateItems = JCheckBox("Ignore duplicate items")
     val ignoreHostDuplicates = JCheckBox("Ignore host when considering duplicate items")
-    val highlightProxyHistory = JCheckBox("Highlight proxy history")
     val injectJavaScript = JCheckBox("Inject Mirror server JavaScript")
 
     init {
@@ -27,8 +26,6 @@ class MirrorOptions(callbacks: IBurpExtenderCallbacks) {
             callbacks.loadExtensionSetting(IGNORE_HOST_DUPLICATES)
                 ?: "false"
             ).toBoolean()
-        highlightProxyHistory.isSelected =
-            (callbacks.loadExtensionSetting(HIGHLIGHT_PROXY_HISTORY) ?: "false").toBoolean()
 
         fetchHistoryOnStart.addActionListener {
             callbacks.saveExtensionSetting(
@@ -63,18 +60,12 @@ class MirrorOptions(callbacks: IBurpExtenderCallbacks) {
                 ignoreHostDuplicates.isSelected.toString()
             )
         }
-        highlightProxyHistory.addActionListener {
-            callbacks.saveExtensionSetting(
-                HIGHLIGHT_PROXY_HISTORY,
-                highlightProxyHistory.isSelected.toString()
-            )
-        }
+
         optionsPanel.apply {
             this.layout = BoxLayout(optionsPanel, BoxLayout.Y_AXIS)
             add(fetchHistoryOnStart)
             add(noDuplicateItems)
             add(ignoreHostDuplicates)
-            add(highlightProxyHistory)
             add(removeCsp)
             add(runServerOnStart)
             add(injectJavaScript)
@@ -91,7 +82,6 @@ class MirrorOptions(callbacks: IBurpExtenderCallbacks) {
         const val IMPORT_PROXY_ON_START = "import proxy on start"
         const val RUN_SERVER_ON_START = "run server ons start"
         const val NO_DUP_ITEMS = "no dup items"
-        const val HIGHLIGHT_PROXY_HISTORY = "highlight proxy history"
         const val IGNORE_HOST_DUPLICATES = "ignore host on duplicates"
         const val REMOVE_CSP_HEADERS = "remove csp headers"
     }
